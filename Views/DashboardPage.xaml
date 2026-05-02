@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HybridTrackerApp.Views.DashboardPage"
+             Title="DashboardPage">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <!-- DEBUGGING SPACING -->
+            <Style TargetType="HorizontalStackLayout">
+                <Setter Property="BackgroundColor" Value="Red" />
+            </Style>
+            <Style TargetType="VerticalStackLayout">
+                <Setter Property="BackgroundColor" Value="DarkSlateGrey" />
+            </Style>
+            <!-- END DEBUGGING SPACING -->
+            
+            <Style TargetType="Button">
+                <!-- Implicit style - no key defined, applies to all buttons -->
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="CornerRadius" Value="13" />
+            </Style>
+            <Style x:Key="checkInButton"  TargetType="Button">
+                <!-- Explicit style - key defined, applies to checkInButtons -->
+                <Setter Property="HorizontalOptions" Value="Center" />
+            </Style>
+            <Style x:Key="checkInLabel" TargetType="Label">
+                <Setter Property="Padding" Value="20" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="16">
+            <Label 
+                Text="Hello USER"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center"
+                FontSize="24"
+                FontAttributes="Bold"/>
+            <Label 
+                Text="Today: DATE"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center"
+                FontSize="24"
+                FontAttributes="Bold"/>
+            <Border BackgroundColor="DarkOliveGreen" Padding="16" >
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="30,30,30,30" />
+                </Border.StrokeShape>
+                <VerticalStackLayout HorizontalOptions="Center">
+                    <Label 
+                        Text="Check-in status: STATUS"
+                        Style="{StaticResource checkInLabel}"
+                        FontSize="24"
+                        FontAttributes="Bold"/>
+                    <Label 
+                        Text="Office network detected: STATUS"
+                        Style="{StaticResource checkInLabel}"
+                        FontSize="24"
+                        FontAttributes="Bold"/>
+                    <HorizontalStackLayout HorizontalOptions="Center">
+                        <Button Text="Working Remotely"
+                                Style="{StaticResource checkInButton}"
+                                BackgroundColor="SlateGrey"                             
+                            />
+                        <Button Text="In Office (manual check in)"
+                                Style="{StaticResource checkInButton}"
+                                BackgroundColor="SlateGrey"
+                            />
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+            </Border>
+        </VerticalStackLayout>
+        
+        
+
+    </ScrollView>
+</ContentPage>

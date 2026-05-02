@@ -3,12 +3,23 @@
     x:Class="HybridTrackerApp.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:HybridTrackerApp"
-    Title="HybridTrackerApp">
+    xmlns:views="clr-namespace:HybridTrackerApp.Views"
+    Title="Hybrid Attendance Planner">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+    <TabBar>
+        <ShellContent
+            Title="Dashboard"
+            ContentTemplate="{DataTemplate views:DashboardPage}"
+            Route="Dashboard" />
+        <ShellContent
+            Title="Calendar"
+            ContentTemplate="{DataTemplate views:CalendarPage}"
+            Route="Calendar" />
+        <ShellContent
+            Title="Settings"
+            ContentTemplate="{DataTemplate views:SettingsPage}"
+            Route="Settings" />
+        
+    </TabBar>
 
 </Shell>
