@@ -6,14 +6,14 @@
 
     <ContentPage.Resources>
         <ResourceDictionary>
-            <!-- DEBUGGING SPACING -->
+            <!-- DEBUGGING SPACING 
             <Style TargetType="HorizontalStackLayout">
                 <Setter Property="BackgroundColor" Value="Red" />
             </Style>
             <Style TargetType="VerticalStackLayout">
                 <Setter Property="BackgroundColor" Value="DarkSlateGrey" />
             </Style>
-            <!-- END DEBUGGING SPACING -->
+             END DEBUGGING SPACING -->
             
             <Style TargetType="Button">
                 <!-- Implicit style - no key defined, applies to all buttons -->
@@ -45,7 +45,7 @@
                 HorizontalOptions="Center"
                 FontSize="24"
                 FontAttributes="Bold"/>
-            <Border BackgroundColor="DarkOliveGreen" Padding="16" >
+            <Border BackgroundColor="{StaticResource PrimaryDark}" Padding="16" >
                 <Border.StrokeShape>
                     <RoundRectangle CornerRadius="30,30,30,30" />
                 </Border.StrokeShape>
@@ -67,7 +67,7 @@
                             />
                         <Button Text="In Office (manual check in)"
                                 Style="{StaticResource checkInButton}"
-                                BackgroundColor="SlateGrey"
+                                BackgroundColor="{StaticResource Primary}"
                             />
                     </HorizontalStackLayout>
                 </VerticalStackLayout>
