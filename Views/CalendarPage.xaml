@@ -2,8 +2,10 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="HybridTrackerApp.Views.CalendarPage"
+             xmlns:vm="clr-namespace:HybridTrackerApp.ViewModels"
              Title="Office Attendance Calendar"
-             xmlns:controls="clr-namespace:Plugin.Maui.Calendar.Controls;assembly=Plugin.Maui.Calendar" >
+             xmlns:controls="clr-namespace:Plugin.Maui.Calendar.Controls;assembly=Plugin.Maui.Calendar" 
+             x:DataType="vm:CalendarViewModel">
     <ContentPage.Resources>
         <ResourceDictionary>
             <Style x:Key="calendarLabel" TargetType="Label">
@@ -24,7 +26,7 @@
         <!-- Legend -->
         <FlexLayout JustifyContent="Center" Wrap="Wrap" Padding="20">
             <HorizontalStackLayout Margin="8,0">
-                <BoxView Color="GreenYellow" 
+                <BoxView Color="{StaticResource MidnightBlue}"
                          WidthRequest="14" 
                          HeightRequest="14" 
                          CornerRadius="3" 
@@ -33,7 +35,7 @@
             </HorizontalStackLayout>
 
             <HorizontalStackLayout Margin="8,0">
-                <BoxView Color="GhostWhite" 
+                <BoxView Color="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" 
                          WidthRequest="14" 
                          HeightRequest="14" 
                          CornerRadius="3" 
@@ -41,35 +43,31 @@
                 <Label Text=" Remote/OoO" FontSize="12" VerticalTextAlignment="Center" />
             </HorizontalStackLayout>
         </FlexLayout>
-        
+
         <Border StrokeShape="50">
             <controls:Calendar
-                BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}"
+                BackgroundColor="{AppThemeBinding Light={StaticResource PrimaryDark}, Dark={StaticResource Primary}}"
                 VerticalOptions="Fill"
                 HorizontalOptions="Fill"
                 FirstDayOfWeek="Monday"
                 SwipeUpToHideEnabled="False"
                 
-                EventIndicatorColor="Red"
-                EventIndicatorSelectedColor="White"
-                DeselectedDayTextColor="Blue"
+                EventIndicatorColor="{StaticResource MidnightBlue}"
+                EventIndicatorTextColor="White"
                 OtherMonthDayColor="Gray"
-                SelectedDayTextColor="Cyan"
-                SelectedDayBackgroundColor="DarkCyan"
-                SelectedTodayTextColor="Green"
-                TodayOutlineColor="Blue"
-                TodayFillColor="Silver"
-                TodayTextColor="Yellow"
-                OtherMonthSelectedDayColor="HotPink"
-                
+                TodayOutlineColor="{StaticResource Magenta}"
+                SelectedTodayTextColor="{StaticResource Magenta}"
+
                 MonthLabelStyle="{StaticResource calendarLabel}"
                 YearLabelStyle="{StaticResource calendarLabel}"
                 SelectedDateLabelStyle="{StaticResource hiddenLabel}"
                 
-                Events="{Binding Events}">
+                Events="{Binding Events}"
+                EventIndicatorType="Background"
+                >
                 <controls:Calendar.EventTemplate>
                     <DataTemplate>
-                        <StackLayout
+                        <VerticalStackLayout
                             Padding="15,0,0,0">
                             <Label
                                 Text="{Binding Name}"
@@ -79,14 +77,11 @@
                                 Text="{Binding Description}"
                                 FontSize="Small"
                                 LineBreakMode="WordWrap" />
-                        </StackLayout>
+                        </VerticalStackLayout>
                     </DataTemplate>
                 </controls:Calendar.EventTemplate>
             </controls:Calendar>
         </Border>
-        <DatePicker>
-            
-        </DatePicker>
 
     </VerticalStackLayout>
     

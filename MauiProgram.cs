@@ -27,9 +27,10 @@ public static class MauiProgram
 
 		//ViewModels
 		builder.Services.AddTransient<ViewModels.DashboardViewModel>();
+		builder.Services.AddTransient<ViewModels.CalendarViewModel>();
 
-		//Pages
-		builder.Services.AddTransient<Views.DashboardPage>();
+        //Pages
+        builder.Services.AddTransient<Views.DashboardPage>();
 
         return builder.Build();
 	}

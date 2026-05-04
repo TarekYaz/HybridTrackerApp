@@ -1,9 +1,15 @@
+using HybridTrackerApp.ViewModels;
+
 namespace HybridTrackerApp.Views;
 
 public partial class CalendarPage : ContentPage
 {
-	public CalendarPage()
+	private readonly CalendarViewModel _viewModel;
+	public CalendarPage(CalendarViewModel viewModel)
 	{
 		InitializeComponent();
+		_viewModel = viewModel;
+		BindingContext = _viewModel;
+		
 	}
 }
