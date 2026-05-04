@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HybridTrackerApp.Models
 {
-    public class UserCalendar
+    class UserProfile
     {
     }
 }
