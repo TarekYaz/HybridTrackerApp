@@ -2,13 +2,104 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="HybridTrackerApp.Views.SettingsPage"
-             Title="SettingsPage">
+             Title="Settings &amp; Privacy">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="officeBtn"  TargetType="Button">
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="CornerRadius" Value="8" />
+            </Style>
+            <Style TargetType="Border">
+                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" />
+                <Setter Property="Padding" Value="16" />
+                <Setter Property="StrokeShape" Value="12" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ScrollView>
-        <VerticalStackLayout>
+        <VerticalStackLayout Padding="20" Spacing="16">
             <Label 
                 Text="Settings &amp; Privacy"
                 VerticalOptions="Center" 
                 HorizontalOptions="Center" />
+            
+            <Label Text="Validation Message"
+                   TextColor="Red"
+                   FontSize="13"
+                   HorizontalTextAlignment="Center" />
+
+            <Border>
+                <VerticalStackLayout Spacing="12">
+                    <Label Text="Presence Detection" FontSize="16" FontAttributes="Bold" />
+                    <HorizontalStackLayout Spacing="12">
+                        <Switch IsToggled="True"
+                                ThumbColor="{StaticResource Primary}" />
+                        <Label Text="Allow network-based auto check-in"
+                               VerticalTextAlignment="Center" />
+                    </HorizontalStackLayout>
+
+                    <Button Text="Save Settings"
+                            
+                            BackgroundColor="{StaticResource Primary}"
+                            TextColor="White"
+                            CornerRadius="8" />
+                </VerticalStackLayout>
+            </Border>
+            
+            <!-- Network simulation -->
+            <Border>
+                <VerticalStackLayout Spacing="12">
+                    <Label Text="Demo: Simulate Office Network" FontSize="16" FontAttributes="Bold" />
+                    <Label Text="For testing auto check-in without a real corporate network."
+                           FontSize="12" TextColor="Grey" />
+
+                    <Label Text="SIMULATED NETWORK"
+                           FontSize="14" />
+
+                    <HorizontalStackLayout Spacing="8">
+                        <Button Text="Office A"
+                                
+                                
+                                Style="{StaticResource officeBtn}"
+                                BackgroundColor="Blue"/>
+                        <Button Text="Office B"
+                                
+                                
+                                Style="{StaticResource officeBtn}"
+                                BackgroundColor="Blue"/>
+                        <Button Text="Clear"
+                                
+                                
+                                Style="{StaticResource officeBtn}"
+                                BackgroundColor="Gray"/>
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+            </Border>
+            
+                <!-- Delete data -->
+            <Border>
+                <VerticalStackLayout Spacing="12">
+                    <Label Text="Delete My Data" FontSize="16" FontAttributes="Bold"
+                           TextColor="Red" />
+                    <Label Text="Remove all presence events and reset attendance history. This cannot be undone!"
+                           FontSize="12"
+                           TextColor="Red"/>
+                    <Button Text="Delete All Data"
+                            
+                            BackgroundColor="Red" TextColor="White"
+                            CornerRadius="8" />
+                </VerticalStackLayout>
+            </Border>
+            
+            <!-- Data policy -->
+            <Border>
+                <VerticalStackLayout Spacing="6">
+                    <Label Text ="Data Policy" FontSize="16" FontAttributes="Bold"/>
+                    <Label Text ="All data is stored locally on your device."/>
+                    <Label Text ="You may delete your data at any time."/>
+                    <Label Text ="Be aware that this policy may change in later versions of the app."/>
+                </VerticalStackLayout>
+            </Border>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

@@ -2,45 +2,24 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="HybridTrackerApp.Views.CalendarPage"
-             Title="CalendarPage"
+             Title="Office Attendance Calendar"
              xmlns:controls="clr-namespace:Plugin.Maui.Calendar.Controls;assembly=Plugin.Maui.Calendar" >
     <ContentPage.Resources>
         <ResourceDictionary>
-            <Style x:Key="dayLabel"  TargetType="Label">
-                <!-- Explicit style - key defined, applies to checkInButtons -->
+            <Style x:Key="calendarLabel" TargetType="Label">
                 <Setter Property="HorizontalTextAlignment" Value="Center" />
-                <Setter Property="FontSize" Value="12" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="FontSize" Value="20" />
                 <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="TextColor" Value="{StaticResource Tertiary}" />
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
-    
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
 
-        
-        <!-- Month picker 
-        <Grid ColumnDefinitions="Auto, *, Auto" Padding="0,0,0,8">
-            <Button Grid.Column="0" 
-                    Text="&#9664;"  
-                    FontSize="20" 
-                    WidthRequest="50"/>
-            <Label Grid.Column="1" 
-                   Text="CurrentMonth" 
-                   FontSize="20" 
-                   HorizontalTextAlignment="Center"
-                   VerticalTextAlignment="Center"/>
-            <Button Grid.Column="2" 
-                    Text="&#9654;"  
-                    FontSize="20" 
-                    WidthRequest="50"/>
-        </Grid>-->
-        
+    <VerticalStackLayout>
+
         <!-- Legend -->
-        <FlexLayout JustifyContent="Center" Wrap="Wrap">
+        <FlexLayout JustifyContent="Center" Wrap="Wrap" Padding="20">
             <HorizontalStackLayout Margin="8,0">
                 <BoxView Color="GreenYellow" 
                          WidthRequest="14" 
@@ -60,22 +39,13 @@
             </HorizontalStackLayout>
         </FlexLayout>
         
-        <!-- days of the week 
-        <Grid ColumnDefinitions="*,*,*,*,*,*,*" ColumnSpacing="4">
-            <Label Grid.Column="0" Text="Mon" Style="{StaticResource dayLabel}" />
-            <Label Grid.Column="1" Text="Tue" Style="{StaticResource dayLabel}" />
-            <Label Grid.Column="2" Text="Wed" Style="{StaticResource dayLabel}" />
-            <Label Grid.Column="3" Text="Thu" Style="{StaticResource dayLabel}" />
-            <Label Grid.Column="4" Text="Fri" Style="{StaticResource dayLabel}" />
-            <Label Grid.Column="5" Text="Sat" Style="{StaticResource dayLabel}" />
-            <Label Grid.Column="6" Text="Sun" Style="{StaticResource dayLabel}" />
-         </Grid>-->
-
-        <Border>
+        <Border StrokeShape="50">
             <controls:Calendar
-                BackgroundColor="{StaticResource Secondary}"
+                BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}"
                 VerticalOptions="Fill"
                 HorizontalOptions="Fill"
+                FirstDayOfWeek="Monday"
+                SwipeUpToHideEnabled="False"
                 EventIndicatorColor="Red"
                 EventIndicatorSelectedColor="White"
                 DeselectedDayTextColor="Blue"
@@ -87,7 +57,9 @@
                 TodayFillColor="Silver"
                 TodayTextColor="Yellow"
                 OtherMonthSelectedDayColor="HotPink"
-                OtherMonthWeekIsVisible="False"/>
+                MonthLabelStyle="{StaticResource calendarLabel}"
+                YearLabelStyle="{StaticResource calendarLabel}"
+                />
         </Border>
         <DatePicker>
             

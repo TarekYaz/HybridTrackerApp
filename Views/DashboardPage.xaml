@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="HybridTrackerApp.Views.DashboardPage"
-             Title="DashboardPage">
+             Title="Dashboard">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -45,10 +45,7 @@
                 HorizontalOptions="Center"
                 FontSize="24"
                 FontAttributes="Bold"/>
-            <Border BackgroundColor="{StaticResource PrimaryDark}" Padding="16" >
-                <Border.StrokeShape>
-                    <RoundRectangle CornerRadius="30,30,30,30" />
-                </Border.StrokeShape>
+            <Border BackgroundColor="{StaticResource PrimaryDark}" Padding="16" StrokeShape="30" >
                 <VerticalStackLayout HorizontalOptions="Center">
                     <Label 
                         Text="Check-in status: STATUS"
