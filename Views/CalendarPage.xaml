@@ -46,13 +46,13 @@
 
         <Border StrokeShape="50">
             <controls:Calendar
-                BackgroundColor="{AppThemeBinding Light={StaticResource PrimaryDark}, Dark={StaticResource Primary}}"
+                BackgroundColor="{StaticResource PrimaryDark}"
                 VerticalOptions="Fill"
                 HorizontalOptions="Fill"
                 FirstDayOfWeek="Monday"
                 SwipeUpToHideEnabled="False"
                 
-                EventIndicatorColor="{StaticResource MidnightBlue}"
+                EventIndicatorColor="{StaticResource Primary}"
                 EventIndicatorTextColor="White"
                 OtherMonthDayColor="Gray"
                 TodayOutlineColor="{StaticResource Magenta}"
@@ -62,24 +62,9 @@
                 YearLabelStyle="{StaticResource calendarLabel}"
                 SelectedDateLabelStyle="{StaticResource hiddenLabel}"
                 
-                Events="{Binding Events}"
                 EventIndicatorType="Background"
+                Events="{Binding Events}"
                 >
-                <controls:Calendar.EventTemplate>
-                    <DataTemplate>
-                        <VerticalStackLayout
-                            Padding="15,0,0,0">
-                            <Label
-                                Text="{Binding Name}"
-                                FontAttributes="Bold"
-                                FontSize="Medium" />
-                            <Label
-                                Text="{Binding Description}"
-                                FontSize="Small"
-                                LineBreakMode="WordWrap" />
-                        </VerticalStackLayout>
-                    </DataTemplate>
-                </controls:Calendar.EventTemplate>
             </controls:Calendar>
         </Border>
 
