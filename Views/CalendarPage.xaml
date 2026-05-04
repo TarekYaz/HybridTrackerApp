@@ -13,6 +13,9 @@
                 <Setter Property="FontAttributes" Value="Bold" />
                 <Setter Property="TextColor" Value="{StaticResource Tertiary}" />
             </Style>
+            <Style x:Key="hiddenLabel" TargetType="Label">
+                <Setter Property="IsVisible" Value="False" />
+            </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
 
@@ -46,6 +49,7 @@
                 HorizontalOptions="Fill"
                 FirstDayOfWeek="Monday"
                 SwipeUpToHideEnabled="False"
+                
                 EventIndicatorColor="Red"
                 EventIndicatorSelectedColor="White"
                 DeselectedDayTextColor="Blue"
@@ -57,9 +61,28 @@
                 TodayFillColor="Silver"
                 TodayTextColor="Yellow"
                 OtherMonthSelectedDayColor="HotPink"
+                
                 MonthLabelStyle="{StaticResource calendarLabel}"
                 YearLabelStyle="{StaticResource calendarLabel}"
-                />
+                SelectedDateLabelStyle="{StaticResource hiddenLabel}"
+                
+                Events="{Binding Events}">
+                <controls:Calendar.EventTemplate>
+                    <DataTemplate>
+                        <StackLayout
+                            Padding="15,0,0,0">
+                            <Label
+                                Text="{Binding Name}"
+                                FontAttributes="Bold"
+                                FontSize="Medium" />
+                            <Label
+                                Text="{Binding Description}"
+                                FontSize="Small"
+                                LineBreakMode="WordWrap" />
+                        </StackLayout>
+                    </DataTemplate>
+                </controls:Calendar.EventTemplate>
+            </controls:Calendar>
         </Border>
         <DatePicker>
             

@@ -13,7 +13,7 @@ namespace HybridTrackerApp.ViewModels
         private string _todayDate = DateTime.Now.ToString("ddd dd MMM");
 
         [ObservableProperty]
-        private bool _isCheckedIn = true;
+        private bool _isCheckedIn = false;
 
         public DashboardViewModel()
         {

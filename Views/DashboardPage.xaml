@@ -51,7 +51,8 @@
                 <VerticalStackLayout HorizontalOptions="Center">
                     <Label 
                         Text="YOU ARE CHECKED IN"
-                        
+                        IsVisible="{Binding IsCheckedIn, Converter={StaticResource BoolConverter}}"
+                        TextColor="Green"
                         Style="{StaticResource checkInLabel}"
                         FontSize="24"
                         FontAttributes="Bold"/>
