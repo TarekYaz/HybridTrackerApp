@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:HybridTrackerApp.ViewModels"
              x:Class="HybridTrackerApp.Views.DashboardPage"
-             Title="Dashboard">
+             Title="Dashboard"
+             x:DataType="vm:DashboardViewModel">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -34,13 +36,13 @@
     <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="16">
             <Label 
-                Text="Hello USER"
+                Text="{Binding UserName}"
                 VerticalOptions="Center" 
                 HorizontalOptions="Center"
                 FontSize="24"
                 FontAttributes="Bold"/>
             <Label 
-                Text="Today: DATE"
+                Text="{Binding TodayDate}"
                 VerticalOptions="Center" 
                 HorizontalOptions="Center"
                 FontSize="24"
@@ -48,7 +50,8 @@
             <Border BackgroundColor="{StaticResource PrimaryDark}" Padding="16" StrokeShape="30" >
                 <VerticalStackLayout HorizontalOptions="Center">
                     <Label 
-                        Text="Check-in status: STATUS"
+                        Text="YOU ARE CHECKED IN"
+                        
                         Style="{StaticResource checkInLabel}"
                         FontSize="24"
                         FontAttributes="Bold"/>

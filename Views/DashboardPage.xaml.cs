@@ -1,9 +1,14 @@
+using HybridTrackerApp.ViewModels;
+
 namespace HybridTrackerApp.Views;
 
 public partial class DashboardPage : ContentPage
 {
-	public DashboardPage()
+	private readonly DashboardViewModel _viewModel;
+	public DashboardPage(DashboardViewModel viewModel)
 	{
 		InitializeComponent();
+		_viewModel = viewModel;
+		BindingContext = _viewModel;
 	}
 }
