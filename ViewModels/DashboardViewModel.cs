@@ -39,11 +39,14 @@ namespace HybridTrackerApp.ViewModels
         [RelayCommand]
         public async Task CheckInAsync()
         {
-            var record = new AttendanceRecord { Date = DateTime.Today };
-            await _db.SaveAttendanceAsync(record);
-            IsCheckedIn = true;
+            if (!_isCheckedIn)
+            {
+                var record = new AttendanceRecord { Date = DateTime.Today };
+                await _db.SaveAttendanceAsync(record);
+                IsCheckedIn = true;
 
-            await CalculateAttendanceAsync();
+                await CalculateAttendanceAsync();
+            }
         }
 
         private async Task CalculateAttendanceAsync()
