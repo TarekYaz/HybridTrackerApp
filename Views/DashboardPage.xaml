@@ -81,6 +81,7 @@
                         FontAttributes="Bold"/>
                     <HorizontalStackLayout HorizontalOptions="Center">
                         <Button Text="Working Remotely"
+                                Command="{Binding CheckOutCommand}"
                                 Style="{StaticResource checkInButton}"
                                 BackgroundColor="SlateGrey"                             
                             />

@@ -50,6 +50,18 @@ namespace HybridTrackerApp.ViewModels
             }
         }
 
+        [RelayCommand]
+        public async Task CheckOutAsync()
+        {
+            if (IsCheckedIn)
+            {
+                DateTime Date = DateTime.Today;
+                await _db.DeleteAttendanceAsync(Date);
+                IsCheckedIn = false;
+                await CalculateAttendanceAsync();
+            }
+        }
+
         private async Task CalculateAttendanceAsync()
         {
             var CurrentMonthStart = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
