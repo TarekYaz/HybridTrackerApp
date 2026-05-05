@@ -51,20 +51,13 @@ namespace HybridTrackerApp.Services
         {
             await InitAsync();
             record.Date = record.Date.Date; // Ensure time component is zeroed out
-            if (record.Id != 0)
-            {
-                return await conn.UpdateAsync(record);
-            }
-            else
-            {
-                return await conn.InsertAsync(record);
-            }
+            return await conn.InsertOrReplaceAsync(record);
         }
 
-        public async Task<int> DeleteAttendanceAsync(AttendanceRecord record)
+        public async Task<int> DeleteAttendanceAsync(DateTime date)
         {
             await InitAsync();
-            return await conn.DeleteAsync(record);
+            return await conn.DeleteAsync<AttendanceRecord>(date);
         }
 
         public async Task<int> DeleteAllAttendanceAsync()

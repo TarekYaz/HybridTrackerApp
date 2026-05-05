@@ -5,9 +5,9 @@ namespace HybridTrackerApp.Models
 {
     public class AttendanceRecord
     {
-        [PrimaryKey, AutoIncrement]
-        public int Id { get; set; }
+        //public int Id { get; set; }
 
+        [PrimaryKey]
         public DateTime Date { get; set; }
 
     }

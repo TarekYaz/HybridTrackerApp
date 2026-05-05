@@ -1,13 +1,15 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using Plugin.Maui.Calendar.Models;
-using HybridTrackerApp.Models;
 using CommunityToolkit.Mvvm.Input;
+using HybridTrackerApp.Models;
+using HybridTrackerApp.Services;
+using Plugin.Maui.Calendar.Models;
 
 namespace HybridTrackerApp.ViewModels
 {
     public partial class CalendarViewModel : ObservableObject
     {
-        
+        private readonly DatabaseService _db;
+
         [ObservableProperty]
         public static string _name = "In Office";
         
@@ -21,9 +23,10 @@ namespace HybridTrackerApp.ViewModels
         private readonly EventModel inOfficeEvent = new() { Name = _name, Description = _description };
 
 
-        public CalendarViewModel()
+        public CalendarViewModel(DatabaseService db)
         {
             _events = new EventCollection();
+            _db = db;
         }
 
         [RelayCommand]
@@ -36,11 +39,18 @@ namespace HybridTrackerApp.ViewModels
                 if (confirm)
                 {
                     _events.Remove(date);
+                    await _db.DeleteAttendanceAsync(date);
+
                 }
             } 
             else
             {
                 _events.Add(date, new List<EventModel> { inOfficeEvent });
+                AttendanceRecord record = new AttendanceRecord
+                {
+                    Date = date
+                };
+                await _db.SaveAttendanceAsync(record);
             }
         }
 
