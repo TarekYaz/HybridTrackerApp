@@ -1,5 +1,6 @@
 ﻿using SQLite;
 using HybridTrackerApp.Models;
+using Plugin.Maui.Calendar.Models;
 
 namespace HybridTrackerApp.Services
 {
@@ -13,13 +14,12 @@ namespace HybridTrackerApp.Services
             if (conn != null)
             {
                 return;
-
-            } else
+            }
+            else
             {
                 conn = new SQLiteAsyncConnection(_dbPath);
                 await conn.CreateTableAsync<AttendanceRecord>();
             }
-            
         }
 
         public DatabaseService(string dbPath)
@@ -38,7 +38,7 @@ namespace HybridTrackerApp.Services
                 .ToListAsync();
         }
 
-        public async Task<AttendanceRecord> GetTodayAttendanceAsync()
+        public async Task<AttendanceRecord?> GetTodayAttendanceAsync()
         {
             await InitAsync();
             var today = DateTime.Today;
@@ -54,10 +54,25 @@ namespace HybridTrackerApp.Services
             return await conn.InsertOrReplaceAsync(record);
         }
 
+        // Persist only the first event in the collection
+        public async Task<int> SaveEventsAsync(DateTime date, IEnumerable<EventModel> eventsForDay)
+        {
+            await InitAsync();
+            var first = eventsForDay?.FirstOrDefault();
+            var record = new AttendanceRecord
+            {
+                Date = date.Date,
+                EventName = first?.Name,
+                EventDescription = first?.Description
+            };
+
+            return await conn.InsertOrReplaceAsync(record);
+        }
+
         public async Task<int> DeleteAttendanceAsync(DateTime date)
         {
             await InitAsync();
-            return await conn.DeleteAsync<AttendanceRecord>(date);
+            return await conn.DeleteAsync<AttendanceRecord>(date.Date);
         }
 
         public async Task<int> DeleteAllAttendanceAsync()
@@ -74,6 +89,29 @@ namespace HybridTrackerApp.Services
             return await conn.Table<AttendanceRecord>()
                 .Where(rec => rec.Date >= firstDay && rec.Date <= lastDay)
                 .CountAsync();
+        }
+
+        // Load events: convert stored first-event into an EventCollection entry (single-item list)
+        public async Task<EventCollection> LoadEventCollectionAsync()
+        {
+            await InitAsync();
+            var records = await conn.Table<AttendanceRecord>().ToListAsync();
+            var events = new EventCollection();
+
+            foreach (var r in records)
+            {
+                if (string.IsNullOrWhiteSpace(r.EventName))
+                    continue;
+
+                var list = new List<EventModel>
+                {
+                    new EventModel { Name = r.EventName, Description = r.EventDescription }
+                };
+
+                events.Add(r.Date, list);
+            }
+
+            return events;
         }
     }
 }

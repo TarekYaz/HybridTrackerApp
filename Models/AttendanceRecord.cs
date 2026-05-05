@@ -1,14 +1,13 @@
-﻿
-using SQLite;
+﻿using SQLite;
 
 namespace HybridTrackerApp.Models
 {
     public class AttendanceRecord
     {
-        //public int Id { get; set; }
-
         [PrimaryKey]
         public DateTime Date { get; set; }
 
+        public string? EventName { get; set; }
+        public string? EventDescription { get; set; }
     }
 }
