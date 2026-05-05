@@ -34,6 +34,7 @@ namespace HybridTrackerApp.ViewModels
         {
             var todayRecord = await _db.GetTodayAttendanceAsync();
             IsCheckedIn = todayRecord != null;
+            await CalculateAttendanceAsync();
         }
 
         [RelayCommand]
