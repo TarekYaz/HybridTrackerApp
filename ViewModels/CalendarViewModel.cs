@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using Plugin.Maui.Calendar.Models;
 using HybridTrackerApp.Models;
+using CommunityToolkit.Mvvm.Input;
 
 namespace HybridTrackerApp.ViewModels
 {
@@ -38,6 +39,25 @@ namespace HybridTrackerApp.ViewModels
         {
             _events = new EventCollection();
         }
+
+        [RelayCommand]
+        public void DayTapped(DateTime date)
+        {
+            // Handle day tapped event here
+            if (_events.TryGetValue(date, out var eventsForDay))
+            {
+                // Do something with the events for the tapped day
+                // For example, navigate to a details page or show a popup
+                _events.Remove(date);
+            } else
+            {
+                _events.Add(date, new List<EventModel>
+                {
+                    new() { Name = "In Office", Description = string.Format("You've checked in on: {0}", date) }
+                });
+            }
+        }
+
 
     }
 }

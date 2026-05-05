@@ -44,7 +44,7 @@
             </HorizontalStackLayout>
         </FlexLayout>
 
-        <Border StrokeShape="50">
+        <Border StrokeShape="50" VerticalOptions="Fill">
             <controls:Calendar
                 BackgroundColor="{StaticResource PrimaryDark}"
                 VerticalOptions="Fill"
@@ -64,6 +64,7 @@
                 
                 EventIndicatorType="Background"
                 Events="{Binding Events}"
+                DayTappedCommand="{Binding DayTappedCommand}"
                 >
             </controls:Calendar>
         </Border>
