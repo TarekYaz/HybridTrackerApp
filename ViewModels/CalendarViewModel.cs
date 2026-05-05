@@ -8,6 +8,13 @@ namespace HybridTrackerApp.ViewModels
     public partial class CalendarViewModel : ObservableObject
     {
         [ObservableProperty]
+        public static string _name = "In Office";
+        [ObservableProperty]
+        public static string _description = "You're checked in on this day!";
+
+        private readonly EventModel inOfficeEvent = new() { Name = _name, Description = _description };
+
+        [ObservableProperty]
         private EventCollection _events;
         //[ObservableProperty]
         //public EventCollection _events = new()
@@ -41,20 +48,20 @@ namespace HybridTrackerApp.ViewModels
         }
 
         [RelayCommand]
-        public void DayTapped(DateTime date)
+        public async Task DayTapped(DateTime date)
         {
             // Handle day tapped event here
             if (_events.TryGetValue(date, out var eventsForDay))
             {
-                // Do something with the events for the tapped day
-                // For example, navigate to a details page or show a popup
-                _events.Remove(date);
-            } else
-            {
-                _events.Add(date, new List<EventModel>
+                bool confirm = await Shell.Current.DisplayAlertAsync("Remove Check-In", "Do you want to remove your check-in for this day?", "Yes", "No");
+                if (confirm)
                 {
-                    new() { Name = "In Office", Description = string.Format("You've checked in on: {0}", date) }
-                });
+                    _events.Remove(date);
+                }
+            } 
+            else
+            {
+                _events.Add(date, new List<EventModel> { inOfficeEvent });
             }
         }
 

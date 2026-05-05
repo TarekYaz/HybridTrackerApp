@@ -16,7 +16,7 @@
                 <Setter Property="TextColor" Value="{StaticResource Tertiary}" />
             </Style>
             <Style x:Key="hiddenLabel" TargetType="Label">
-                <Setter Property="IsVisible" Value="False" />
+                <Setter Property="IsVisible" Value="True" />
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
@@ -44,7 +44,7 @@
             </HorizontalStackLayout>
         </FlexLayout>
 
-        <Border StrokeShape="50" VerticalOptions="Fill">
+
             <controls:Calendar
                 BackgroundColor="{StaticResource PrimaryDark}"
                 VerticalOptions="Fill"
@@ -60,14 +60,22 @@
 
                 MonthLabelStyle="{StaticResource calendarLabel}"
                 YearLabelStyle="{StaticResource calendarLabel}"
-                SelectedDateLabelStyle="{StaticResource hiddenLabel}"
+
                 
                 EventIndicatorType="Background"
                 Events="{Binding Events}"
                 DayTappedCommand="{Binding DayTappedCommand}"
                 >
+                <controls:Calendar.EventTemplate>
+                    <DataTemplate>
+                        <VerticalStackLayout>
+                            <Label Text="{Binding Name}" />
+                            <Label Text="{Binding Description}" />
+                        </VerticalStackLayout>
+                    </DataTemplate>
+                </controls:Calendar.EventTemplate>
             </controls:Calendar>
-        </Border>
+
 
     </VerticalStackLayout>
     
