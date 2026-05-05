@@ -1,12 +1,12 @@
 ﻿
+using SQLite;
+
 namespace HybridTrackerApp.Models
 {
     public class AttendanceRecord
     {
-
+        [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
-
-        public string UserId { get; set; } = string.Empty;
 
         public DateTime Date { get; set; }
 
