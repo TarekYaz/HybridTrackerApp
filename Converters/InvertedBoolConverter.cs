@@ -2,13 +2,13 @@
 
 namespace HybridTrackerApp.Converters
 {
-    internal class BoolConverter : IValueConverter
+    internal class InvertedBoolConverter : IValueConverter
     {
         public object? Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             if (value is bool boolValue)
             {
-                return boolValue;
+                return !boolValue;
             }
             return "Unknown";
         }

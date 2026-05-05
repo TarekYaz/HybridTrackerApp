@@ -64,20 +64,20 @@
                         FontAttributes="Bold"/>
                     <Label 
                         Text="You are not checked in"
-                        IsVisible="{Binding IsCheckedIn, Converter={StaticResource BoolConverter}, ConverterParameter=True}"
+                        IsVisible="{Binding IsCheckedIn, Converter={StaticResource InvertedBoolConverter}}"
                         TextColor="Red"
                         Style="{StaticResource checkInLabel}"
                         FontSize="24"
                         FontAttributes="Bold"/>
                     <Label 
-                        Text="{Binding OfficeDays}"
+                        Text="{Binding OfficeDays, StringFormat='{0} days this month'}"
                         Style="{StaticResource checkInLabel}"
                         FontSize="18"
                         FontAttributes="Bold"/>
                     <Label 
-                        Text="{Binding AttendancePercentage}"
+                        Text="{Binding AttendancePercentage, StringFormat='{0}%'}"
                         Style="{StaticResource checkInLabel}"
-                        FontSize="18"
+                        FontSize="30"
                         FontAttributes="Bold"/>
                     <HorizontalStackLayout HorizontalOptions="Center">
                         <Button Text="Working Remotely"

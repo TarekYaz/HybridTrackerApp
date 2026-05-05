@@ -26,6 +26,7 @@
                 HorizontalOptions="Center" />
             
             <Label Text="Validation Message"
+                   IsVisible="False"
                    TextColor="Red"
                    FontSize="13"
                    HorizontalTextAlignment="Center" />
