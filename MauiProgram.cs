@@ -30,10 +30,12 @@ public static class MauiProgram
         //ViewModels
         builder.Services.AddTransient<ViewModels.DashboardViewModel>();
 		builder.Services.AddTransient<ViewModels.CalendarViewModel>();
+		builder.Services.AddTransient<ViewModels.SettingsViewModel>();
 
         //Pages
         builder.Services.AddTransient<Views.DashboardPage>();
 		builder.Services.AddTransient<Views.CalendarPage>();
+		builder.Services.AddTransient<Views.SettingsPage>();
 
         return builder.Build();
 	}

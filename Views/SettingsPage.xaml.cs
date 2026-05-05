@@ -1,9 +1,14 @@
+using HybridTrackerApp.ViewModels;
+
 namespace HybridTrackerApp.Views;
 
 public partial class SettingsPage : ContentPage
 {
-	public SettingsPage()
+    private readonly SettingsViewModel _viewModel;
+	public SettingsPage(SettingsViewModel viewModel)
 	{
 		InitializeComponent();
-	}
+        _viewModel = viewModel;
+        BindingContext = _viewModel;
+    }
 }

@@ -38,6 +38,15 @@ namespace HybridTrackerApp.Services
                 .ToListAsync();
         }
 
+        public async Task<AttendanceRecord> GetTodayAttendanceAsync()
+        {
+            await InitAsync();
+            var today = DateTime.Today;
+            return await conn.Table<AttendanceRecord>()
+                .Where(rec => rec.Date == today)
+                .FirstOrDefaultAsync();
+        }
+
         public async Task<int> SaveAttendanceAsync(AttendanceRecord record)
         {
             await InitAsync();

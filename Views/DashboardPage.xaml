@@ -58,8 +58,26 @@
                         FontAttributes="Bold"/>
                     <Label 
                         Text="Office network detected: STATUS"
+                        IsVisible= "False"
                         Style="{StaticResource checkInLabel}"
                         FontSize="24"
+                        FontAttributes="Bold"/>
+                    <Label 
+                        Text="You are not checked in"
+                        IsVisible="{Binding IsCheckedIn, Converter={StaticResource BoolConverter}, ConverterParameter=True}"
+                        TextColor="Red"
+                        Style="{StaticResource checkInLabel}"
+                        FontSize="24"
+                        FontAttributes="Bold"/>
+                    <Label 
+                        Text="{Binding OfficeDays}"
+                        Style="{StaticResource checkInLabel}"
+                        FontSize="18"
+                        FontAttributes="Bold"/>
+                    <Label 
+                        Text="{Binding AttendancePercentage}"
+                        Style="{StaticResource checkInLabel}"
+                        FontSize="18"
                         FontAttributes="Bold"/>
                     <HorizontalStackLayout HorizontalOptions="Center">
                         <Button Text="Working Remotely"
@@ -67,6 +85,7 @@
                                 BackgroundColor="SlateGrey"                             
                             />
                         <Button Text="In Office (manual check in)"
+                                Command="{Binding CheckInCommand}"
                                 Style="{StaticResource checkInButton}"
                                 BackgroundColor="{StaticResource Primary}"
                             />
